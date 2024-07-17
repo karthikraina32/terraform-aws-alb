@@ -361,7 +361,7 @@ resource "aws_lb_listener_rule" "this" {
   }
 
   dynamic "condition" {
-    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "host_header")]
+    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "host_header") && condition.host_header != null && condition.host_header != ""]
 
     content {
       dynamic "host_header" {
@@ -375,7 +375,7 @@ resource "aws_lb_listener_rule" "this" {
   }
 
   dynamic "condition" {
-    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "http_header")]
+    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "http_header") && condition.http_header != null && condition.http_header != ""]
 
     content {
       dynamic "http_header" {
@@ -390,7 +390,7 @@ resource "aws_lb_listener_rule" "this" {
   }
 
   dynamic "condition" {
-    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "http_request_method")]
+    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "http_request_method") && condition.http_request_method != null && condition.http_request_method != ""]
 
     content {
       dynamic "http_request_method" {
@@ -404,7 +404,7 @@ resource "aws_lb_listener_rule" "this" {
   }
 
   dynamic "condition" {
-    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "path_pattern")]
+    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "path_pattern") && condition.path_pattern != null && condition.path_pattern != ""]
 
     content {
       dynamic "path_pattern" {
@@ -418,7 +418,7 @@ resource "aws_lb_listener_rule" "this" {
   }
 
   dynamic "condition" {
-    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "query_string")]
+    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "query_string") && condition.query_string != null && condition.query_string != ""]
 
     content {
       dynamic "query_string" {
@@ -433,7 +433,7 @@ resource "aws_lb_listener_rule" "this" {
   }
 
   dynamic "condition" {
-    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "source_ip")]
+    for_each = [for condition in each.value.conditions : condition if contains(keys(condition), "source_ip") && condition.source_ip != null && condition.source_ip != ""]
 
     content {
       dynamic "source_ip" {
